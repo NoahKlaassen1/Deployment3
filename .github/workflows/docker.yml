@@ -19,15 +19,14 @@ jobs:
           extensions: sqlite, pdo_sqlite
           ini-values: post_max_size=256M, memory_limit=2G
 
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
       - name: Create .env file
         run: |
           cp .env.example .env
           php -r "file_exists('database') || mkdir('database');"
           touch database/database.sqlite
-          php artisan config:clear
-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist
 
       - name: Generate app key
         run: php artisan key:generate
