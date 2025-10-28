@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <h1>Todo App — Overzicht</h1>
+    <h1>Todos</h1>
     <nav>
       <a href="{{ route('todos.create') }}">Nieuwe Todo</a>
     </nav>

@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Test and Push Docker Image
 
 on:
   push:
@@ -11,6 +11,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v4
+        with:
+          php-version: 8.3
+          extensions: sqlite, pdo_sqlite
+          ini-values: post_max_size=256M, memory_limit=2G
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Run Feature Tests
+        run: php artisan test
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
