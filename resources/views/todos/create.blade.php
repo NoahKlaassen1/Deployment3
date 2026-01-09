@@ -26,7 +26,7 @@
     <form method="POST" action="{{ route('todos.store') }}">
       @csrf
       <div>
-        <label for="title">Titel</label>
+        <label for="title">Naam</label>
         <input id="title" name="title" value="{{ old('title') }}" required>
       </div>
 
