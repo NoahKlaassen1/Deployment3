@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\Todo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\Todo;
 
 class TodoTest extends TestCase
 {

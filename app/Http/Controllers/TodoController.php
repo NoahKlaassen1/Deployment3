@@ -9,7 +9,8 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::orderBy('created_at','desc')->get();
+        $todos = Todo::orderBy('created_at', 'desc')->get();
+
         return view('todos.index', compact('todos'));
     }
 
@@ -27,7 +28,7 @@ class TodoController extends Controller
 
         Todo::create($data);
 
-        return redirect()->route('todos.index')->with('success','Todo aangemaakt');
+        return redirect()->route('todos.index')->with('success', 'Todo aangemaakt');
     }
 
     public function show(Todo $todo)
@@ -48,16 +49,17 @@ class TodoController extends Controller
             'done' => 'nullable|boolean',
         ]);
 
-        $data['done'] = $request->has('done') ? (bool)$request->input('done') : false;
+        $data['done'] = $request->has('done') ? (bool) $request->input('done') : false;
 
         $todo->update($data);
 
-        return redirect()->route('todos.index')->with('success','Todo bijgewerkt');
+        return redirect()->route('todos.index')->with('success', 'Todo bijgewerkt');
     }
 
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        return redirect()->route('todos.index')->with('success','Todo verwijderd');
+
+        return redirect()->route('todos.index')->with('success', 'Todo verwijderd');
     }
 }
